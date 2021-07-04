@@ -2,7 +2,7 @@
 var button = document.getElementById('btn');
 var plant_name_input = document.getElementById('plant_name_input')
 var harvest_time_input= document.getElementById('harvest_time_input')
-var thinning_time_input = document.getElementById('thinning_time_)input')
+var thinning_time_input = document.getElementById('thinning_time_input')
 var thinning_spacing_input = document.getElementById('thinning_spacing_input')
 var water_frequency_input = document.getElementById('water_frequency_input')
 var planted_date_input = document.getElementById('planted_date_input')
@@ -40,18 +40,20 @@ function addDays(date, days) {
 	var result = new Date(date);
 	result.setDate(result.getDate() + days);
 	return result;
+	console.log(result);
 }
 
 //EVENT LISTENERS
 btn.addEventListener('click', ($event) => {
+	$event.preventDefault();
 	
 
 	const post = {
 		plant_name: plant_name_input.value,
-		harvest_time: harvest_time_input.value,
-		thinning_time: thinning_spacing_input.value,
-		thinning_spacing: thinning_spacing_input.value,
-		water_frequency: water_frequency_input.value,
+		harvest_time: parseInt(harvest_time_input.value),
+		thinning_time: parseInt(thinning_time_input.value),
+		thinning_spacing: parseInt(thinning_spacing_input.value),
+		water_frequency: parseInt(water_frequency_input.value),
 		planted_date: planted_date_input.value
 	};
 
@@ -59,4 +61,7 @@ btn.addEventListener('click', ($event) => {
 
 	console.log(post);
 
+
 });
+
+

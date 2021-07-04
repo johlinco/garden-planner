@@ -17,6 +17,33 @@
       "water_frequency": "9",
       "planted_date": "2021-06-03",
       "id": 2
+    },
+    {
+      "plant_name": "Tomato",
+      "harvest_time": "5",
+      "thinning_time": "5",
+      "thinning_spacing": "5",
+      "water_frequency": "5",
+      "planted_date": "2021-07-04",
+      "id": 3
+    },
+    {
+      "plant_name": "chive",
+      "harvest_time": "5",
+      "thinning_time": "5",
+      "thinning_spacing": "5",
+      "water_frequency": "5",
+      "planted_date": "2021-07-04",
+      "id": 4
+    },
+    {
+      "plant_name": "squash",
+      "harvest_time": 144,
+      "thinning_time": 45,
+      "thinning_spacing": 64,
+      "water_frequency": 32,
+      "planted_date": "2021-07-04",
+      "id": 5
     }
   ]
 }
