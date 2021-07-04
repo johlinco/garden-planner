@@ -1,0 +1,22 @@
+{
+  "item": [
+    {
+      "plant_name": "Tomato",
+      "harvest_time": "3",
+      "thinning_time": "3",
+      "thinning_spacing": "3",
+      "water_frequency": "3",
+      "planted_date": "2021-06-02",
+      "id": 1
+    },
+    {
+      "plant_name": "Tomato",
+      "harvest_time": "6",
+      "thinning_time": "6",
+      "thinning_spacing": "6",
+      "water_frequency": "9",
+      "planted_date": "2021-06-03",
+      "id": 2
+    }
+  ]
+}

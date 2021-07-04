@@ -1,0 +1,51 @@
+
+* {
+  font-family: futura;
+  }
+
+#plant_form {
+  border: 1px solid red;
+ }
+
+#btn {
+	font-family: futura;
+	margin-left: 40%;
+}
+
+#results {
+  border: 1px solid red;
+}
+
+.container {  
+  border: 2px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@media (max-width: 599px) {
+    .container {
+        display:  flex;
+        flex-direction: column;
+    }
+}
+
+label {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: right;
+    margin: 5px;
+}
+input {
+  display: inline-block;
+  float: left;
+  margin: 5px;
+}
+
+div {
+  border:  1px solid red;
+}
+

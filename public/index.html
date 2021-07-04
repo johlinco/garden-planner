@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="style.css">
+
+<body>  
+
+<div class="container" id="container">
+
+<form id="plant_form">
+  <label id="plant_name_label" for="plant_name">Plant Name</label>
+  <input type="text" id="plant_name_input" name="plant_name"> <br>
+  <label id="harvest_label" for="harvet_time">Days Until Harvest</label>
+  <input type="number" id="harvest_time_input" name="harvest_time"><br>
+  <label id="thinning_time_label" for="thinning_time_label">Days Until Thinning</label>
+  <input type="number" id="thinning_time_input" name="thinning_time"><br>
+  <label id="thinning_spacing_label" for="thinning_time_spacing">Thinning Spacing (inches)</label>
+  <input type="number" id="thinning_spacing_input" name="thinning_spacing"><br>
+  <label id="water_frequency_label" for="water_frequency">Watering Frequency</label>
+  <input type="number" id="water_frequency_input" name="water_frequency"><br>
+  <label id="planted_date_label" for="planted_date">Day of Planting</label>
+  <input type="date" id="planted_date_input" name="planted_date"><br>
+
+  <button id="btn">Add Item</button>
+</form>
+
+
+<div class='results' id='results'>
+  Here are the results
+</div>
+
+</div>
+</body>
+
+<script type="text/javascript" src="script.js"></script>
+
+
+
+
+</html>
