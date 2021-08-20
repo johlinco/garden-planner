@@ -23,14 +23,6 @@ function clearList() {
 };
 
 
-//prints list of days for watering
-function wateringDays(plantedDate, waterFrequency) {
-	let inGround = plantedDate;
-	console.log(inGround);
-	return inGround;
-};
-
-
 
 //gets data from JSON db
 function getTodoItemsPromise() {
@@ -104,7 +96,20 @@ function deleteTodo(id) {
 	});
 };
 
-
+// generates array of dates for watering (to be refactored for all date array generation)
+function wateringDays(plantedDate, waterFrequency) {
+	let dates = [];
+	let someDate = new Date(plantedDate).getTime() / 1000;
+	let numberOfDaysToAdd = waterFrequency;
+	while (someDate <= 1634011200) {
+	someDate = new Date(someDate * 1000);
+	someDate = someDate.setDate(someDate.getDate() + numberOfDaysToAdd); 
+	dates.push(new Date(someDate));
+	someDate = new Date(someDate).getTime() / 1000;
+	}	
+	console.log(dates);
+	console.log(someDate);
+};
 
 function renderCheckListItems() {
 
@@ -120,6 +125,7 @@ function renderCheckListItems() {
   		//loops through array
 		  for (let i = 0; i < obj.length; i++) {
 	  	
+  			wateringDays(obj[i].planted_date, obj[i].water_frequency);
 
 				//creates watering to dos from text for each array item
 		  	var node = document.createElement("li");
@@ -149,7 +155,7 @@ function renderCheckListItems() {
 				    list.appendChild(buttonElem);
 				    list.appendChild(document.createElement("br"));
 
-		    wateringDays(obj[i].planted_date, obj[i].water_frequency);
+		    
 
 		  }
 	  },
