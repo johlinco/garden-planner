@@ -4,7 +4,7 @@
   }
 
 #plant_form {
-  border: 1px solid red;
+  
  }
 
 #btn {
@@ -13,7 +13,7 @@
 }
 
 #results {
-  border: 1px solid red;
+  
 }
 
 .container {  
@@ -39,6 +39,7 @@ label {
     text-align: right;
     margin: 5px;
 }
+
 input {
   display: inline-block;
   float: left;
@@ -46,6 +47,6 @@ input {
 }
 
 div {
-  border:  1px solid red;
+ 
 }
 

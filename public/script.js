@@ -40,29 +40,6 @@ function getTodoItemsPromise() {
 })
 };
 
-//updates JSON db to reflect current status of checkbox based id and new status of checkbox
-function updateCheckbox(id, checkStatus) {
-
-		let patchCheckboxPromise = new Promise(function(myResolve, myReject) {
-			let req = new XMLHttpRequest();
-			req.open('PATCH', api + "/" + id);
-			req.onload = function() {
-				if (req.status == 200) {
-					myResolve(req.response);
-				} else {
-					myReject("Error")
-				}
-			};
-			req.setRequestHeader('Content-Type', 'application/json');
-			if (checkStatus == false) {
-				req.send(JSON.stringify({completed: false}));
-				console.log('false is working');
-			} if (checkStatus == true) {
-				req.send(JSON.stringify({completed: true}));
-				console.log('true is working');
-			};	
-		});
-	};
 
 function postRequest(data) {
 	return new Promise(function(myResolve, myReject) {
@@ -80,8 +57,8 @@ function postRequest(data) {
 	});
 };
 
-//removes item from JSON db when delete button is clicked
-function deleteTodo(id) {
+//takes id of plant removes corresponding item from JSON db
+function deletePlant(id) {
 	return new Promise(function(myResolve, myReject) {
 	let req = new XMLHttpRequest();
 	req.open('DELETE', api + "/" + id);
@@ -96,7 +73,7 @@ function deleteTodo(id) {
 	});
 };
 
-// generates array of dates for watering (to be refactored for all date array generation)
+// generates array of dates for watering, takes 
 function wateringDays(plantedDate, waterFrequency) {
 	let dates = [];
 	let someDate = new Date(plantedDate).getTime() / 1000;
@@ -107,8 +84,7 @@ function wateringDays(plantedDate, waterFrequency) {
 	dates.push(new Date(someDate));
 	someDate = new Date(someDate).getTime() / 1000;
 	}	
-	console.log(dates);
-	console.log(someDate);
+	return dates;
 };
 
 function renderCheckListItems() {
@@ -118,30 +94,39 @@ function renderCheckListItems() {
 		//parsing JSON db	into array
 	  function(value) {
 	    const obj = JSON.parse(value);
-	    console.log(obj.length);
-	    console.log(obj);
 
-	    
-  		//loops through array
+
+
+  		//loops through array of plants from JSON db
 		  for (let i = 0; i < obj.length; i++) {
 	  	
-  			wateringDays(obj[i].planted_date, obj[i].water_frequency);
+		  var dates = wateringDays(obj[i].planted_date, obj[i].water_frequency);
 
 				//creates watering to dos from text for each array item
-		  	var node = document.createElement("li");
-						node.innerHTML = "Water " + obj[i].plant_name;
-						node.id = obj[i].id;
-						list.appendChild(node);
+		  	for (let d = 0; d < dates.length; d++) {
+			  	var node = document.createElement("li");
+							node.innerHTML = dates[d].getUTCMonth() + 1 + "/" + dates[d].getUTCDate() + ": Water " + obj[i].plant_name;
+							node.id = obj[i].id;
+							list.appendChild(node);
+				}			
 
 				//creates thinning to dos from text for each array item
-		  	var node = document.createElement("li");
-						node.innerHTML = "Thin " + obj[i].plant_name;
-						node.id = obj[i].id;
-						list.appendChild(node);
+		  	if (obj[i].thinning_time !== null) {
+			  	var node = document.createElement("li");
+			  			thinningDate = new Date(obj[i].planted_date);
+			  			thinningDate = thinningDate.setDate(thinningDate.getDate() + obj[i].thinning_time);
+			  			thinningDate = new Date(thinningDate);
+							node.innerHTML = thinningDate.getUTCMonth() + 1 + "/" + thinningDate.getUTCDate() + ": Thin " + obj[i].plant_name + " plants to one plant every " + obj[i].thinning_spacing + " inches";
+							node.id = obj[i].id;
+							list.appendChild(node);
+				};
 
 				//creates harvest to dos from text for each array item
 		  	var node = document.createElement("li");
-						node.innerHTML = "Harvest " + obj[i].plant_name;
+		  			harvestDate = new Date(obj[i].planted_date);
+		  			harvestDate = harvestDate.setDate(harvestDate.getDate() + obj[i].harvest_time);
+		  			harvestDate  = new Date(harvestDate);
+						node.innerHTML = harvestDate.getUTCMonth() + 1 + "/" + harvestDate.getUTCDate() + ": Harvest " + obj[i].plant_name;
 						node.id = obj[i].id;
 						list.appendChild(node);
 
@@ -155,7 +140,7 @@ function renderCheckListItems() {
 				    list.appendChild(buttonElem);
 				    list.appendChild(document.createElement("br"));
 
-		    
+
 
 		  }
 	  },
@@ -183,19 +168,8 @@ btn.addEventListener('click', ($event) => {
 
 	postRequest(post)
 	.then(renderCheckListItems());
-
-	
-
 });
 
-document.getElementById("results").addEventListener("click", function(e) {
-	if(e.target && e.target.type == "checkbox") {
-		console.log(e.target.id);
-		console.log(e.target.checked);
-		updateCheckbox(e.target.id, e.target.checked);
-	} 
-
-});
 
 
 document.getElementById("results").addEventListener("click", function(e) {
@@ -203,8 +177,7 @@ document.getElementById("results").addEventListener("click", function(e) {
 	// If it was a list item
 	if(e.target && e.target.class == "button") {
 		 //List item found!  Output the ID!
-		console.log(e.target.id);
-		deleteTodo(e.target.id)
+		deletePlant(e.target.id)
 			.then(clearList())
 			.then(renderCheckListItems());
 	} 
