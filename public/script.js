@@ -1,3 +1,6 @@
+
+
+
 //DOM ELEMENTS
 var button = document.getElementById('btn');
 var plant_name_input = document.getElementById('plant_name_input')
@@ -11,7 +14,6 @@ var list = document.getElementById('results')
 //VARIABLES
 
 const api = 'http://localhost:3000/item';
-
 
 
 //FUNCTIONS
