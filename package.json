@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "express": "^4.17.2",
-    "loader": "^2.1.1",
-    "mongoose": "^6.1.8"
-  }
-}

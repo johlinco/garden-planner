@@ -13,7 +13,7 @@ var list = document.getElementById('results')
 
 //VARIABLES
 
-const api = 'http://localhost:3000/item';
+const api = '/api/plants';
 
 
 //FUNCTIONS
@@ -35,7 +35,7 @@ function getTodoItemsPromise() {
     if (req.status == 200) {
       myResolve(req.response);
     } else {
-      myReject("Error");
+      myReject("Get Error");
     }
   };
   req.send();
@@ -96,6 +96,7 @@ function renderCheckListItems() {
 		//parsing JSON db	into array
 	  function(value) {
 	    const obj = JSON.parse(value);
+	    console.log(obj);
 
 
 
@@ -156,7 +157,7 @@ function renderCheckListItems() {
 //EVENT LISTENERS
 btn.addEventListener('click', ($event) => {
 	$event.preventDefault();
-	
+	//renderCheckListItems();
 
 	const post = {
 		plant_name: plant_name_input.value,
