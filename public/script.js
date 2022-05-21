@@ -80,7 +80,7 @@ function wateringDays(plantedDate, waterFrequency) {
 	let dates = [];
 	let someDate = new Date(plantedDate).getTime() / 1000;
 	let numberOfDaysToAdd = waterFrequency;
-	while (someDate <= 1634011200) {
+	while (someDate <= 1667188800) {
 	someDate = new Date(someDate * 1000);
 	someDate = someDate.setDate(someDate.getDate() + numberOfDaysToAdd); 
 	dates.push(new Date(someDate));
@@ -109,7 +109,7 @@ function renderCheckListItems() {
 		  	for (let d = 0; d < dates.length; d++) {
 			  	var node = document.createElement("li");
 							node.innerHTML = dates[d].getUTCMonth() + 1 + "/" + dates[d].getUTCDate() + ": Water " + obj[i].plant_name;
-							node.id = obj[i].id;
+							node.id = obj[i]._id;
 							list.appendChild(node);
 				}			
 
@@ -120,7 +120,7 @@ function renderCheckListItems() {
 			  			thinningDate = thinningDate.setDate(thinningDate.getDate() + obj[i].thinning_time);
 			  			thinningDate = new Date(thinningDate);
 							node.innerHTML = thinningDate.getUTCMonth() + 1 + "/" + thinningDate.getUTCDate() + ": Thin " + obj[i].plant_name + " plants to one plant every " + obj[i].thinning_spacing + " inches";
-							node.id = obj[i].id;
+							node.id = obj[i]._id;
 							list.appendChild(node);
 				};
 
@@ -130,7 +130,7 @@ function renderCheckListItems() {
 		  			harvestDate = harvestDate.setDate(harvestDate.getDate() + obj[i].harvest_time);
 		  			harvestDate  = new Date(harvestDate);
 						node.innerHTML = harvestDate.getUTCMonth() + 1 + "/" + harvestDate.getUTCDate() + ": Harvest " + obj[i].plant_name;
-						node.id = obj[i].id;
+						node.id = obj[i]._id;
 						list.appendChild(node);
 
 
@@ -138,7 +138,7 @@ function renderCheckListItems() {
 				const buttonElem = document.createElement('button');
 				    buttonElem.innerText = 'delete';
 						buttonElem.type = "delete";
-						buttonElem.id = obj[i].id;
+						buttonElem.id = obj[i]._id;
 						buttonElem.class = "button";			    
 				    list.appendChild(buttonElem);
 				    list.appendChild(document.createElement("br"));

@@ -17,9 +17,7 @@ app.use('/api/plants', postsRoute);
 
 //ROUTES
 app.use(express.static('../public'))
-//app.get('/', (req, res) => {
-//	res.send('we are on home');
-//});
+
 
 app.get('/posts', (req, res) => {
 	res.send('we are on posts');
